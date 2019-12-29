@@ -43,12 +43,12 @@ $next=($key!=(count($movies)-1))?$movies[$key+1]['id']:$m['id'];
     </li>
     <li>
         <div>
-            <button>顯示</button>
-            <button>往上</button>
-            <button>往下</button>
+        <button class="shBtn" data-show="<?=$m['id'];?>"><?=($m['sh']==1)?"顯示":"隱藏";?></button>
+            <button class="shiftBtn" id="<?=$m['id'] . "-" . $prev;?>">往上</button>
+            <button class="shiftBtn" id="<?=$m['id'] . "-" . $next;?>">往下</button>
             <!--增加資料id在編輯電影的連結上，方便後續製作編輯電影功能時使用-->
             <button onclick="javascript:location.href='admin.php?do=editmovie&id=<?=$m['id'];?>'">編輯電影</button>
-            <button>刪除電影</button>
+            <button class="delBtn" data-del="<?=$m['id'];?>">刪除電影</button>
         </div>
         <div>
             <?=$m['intro'];?>

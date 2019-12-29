@@ -232,3 +232,16 @@ input[type='button'],input[type='submit'],input[type='reset'],button,.button
 	border-radius:5px; /*增加點圓角*/
 }
 ```
+
+---
+
+## 步驟十：後台院線片管理二
+完成列表功能後，接下來製作各個按鈕的功能，示意圖中不像預告片那邊有一個確認編輯的按鈕，因此我們可以理解為每部院線片的設定都是獨立的，但是題目本身並沒有指定到底要怎麼做，因此延用預告片的做法也是可以的，我在這邊使用的是接近示意圖的做法，也就是儘可能使用ajax來完成所有按鈕功能的操作，每一次的操作也只針對一筆資料來處理。
+
+1. **顯示**按鈕的功能，需要告知api是那張表格的那筆資料要改為隱藏，因此我們在 `./admin/movielist.php` 的顯示按鈕中增加一個**data-show**屬性並帶入資料的id值
+2. 在 `./admin/movie.php` 中撰寫javascript程式嗎，處理顯示按鈕的功能
+3. 建立 `./api/sh.php` 並撰寫更改顯示值的語法
+4. **往上**、**往下**按鈕的功能，複製 `./admin/poster.php` 中的排序按鈕js，並修改相應的資料表名，即可完成排序的功能，要記得在 `./admin/movielist.php` 中增加排序的sql語法，api還是使用 `./api/switch.php` ，只要記得帶上table名就可以了
+5. **刪除**按鈕的功能，在 `./admin/movielist.php` 的刪除按鈕上增加**data-del**屬性並帶入資料的id值
+6. 在 `./admin/movie.php` 中增加刪除功能的事件註冊及相應的行為
+7. 新增 `./api/del.php` ，並撰寫刪除功能的程式碼
