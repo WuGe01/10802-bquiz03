@@ -7,6 +7,13 @@ $pdo=new PDO($dsn,"root","");
 //啟用session
 session_start();
 
+//建立一個分級資訊的陣列，儲存分級的icon檔名及分級的字串
+$level=[
+  1 => ["03C01.png","普遍級"],
+  2 => ["03C02.png","輔導級"],
+  3 => ["03C03.png","保護級"],
+  4 => ["03C04.png","限制級"],
+];
 
 //取得單筆資料
 function find($table,...$arg){
