@@ -1,3 +1,4 @@
+<?php include_once "base.php";?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0055)?do=admin -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -26,6 +27,18 @@
     </marquee>
   </div>
   <div id="mm">
+  <?php
+
+if(!empty($_POST)){
+  if($_POST['acc']=='admin' && $_POST['pw']=="1234"){
+    $_SESSION['admin']=1;
+  }else{
+    echo "帳號或密碼錯誤";
+  }
+}
+
+if(!empty($_SESSION['admin'])){
+?>
     <div class="ct a rb" style="position:relative; width:101.5%; left:-1%; padding:3px; top:-9px;">
       <a href="?do=title">網站標題管理</a>|
       <a href="?do=go">動態文字管理</a>|
@@ -33,17 +46,41 @@
       <a href="?do=movie">院線片管理</a>|
       <a href="?do=order">電影訂票管理</a>
     </div>
-    <div class="rb tab">
+    <!--使用行內樣式的做法將主要內容區的寬度設為98%-->
+    <div class="rb tab" style="width:98%">
     <?php
       $do = (!empty($_GET['do'])) ? $_GET['do'] : "home";
       $path = "./admin/" . $do . ".php";
-      if (file_exists($path)) {
+      if(file_exists($path)){
           include $path;
-      } else {
+      }else{
           include "./admin/home.php";
       }
     ?>
     </div>
+    <?php
+    }else{
+    ?>
+      <!--建置登入表單-->
+      <form action="admin.php" method="post">
+        <table>
+          <tr>
+            <td>帳號：</td>
+            <td><input type="text" name="acc" id="acc"></td>
+          </tr>
+          <tr>
+            <td>密碼：</td>
+            <td><input type="password" name="pw" id="pw"></td>
+          </tr>
+          <tr>
+            <td><input type="submit" value="登入"></td>
+            <td><input type="reset" value="重置"></td>
+          </tr>
+        </table>
+      </form>
+    <?php
+    }
+    ?>
   </div>
   <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
 </div>
