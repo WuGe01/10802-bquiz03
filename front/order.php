@@ -42,7 +42,7 @@ table.result td{
 }
 </style>
 <h3>線上訂票</h3>
-<form action="" method="post">
+<form>
     <table>
         <tr>
             <td>電影：</td>
