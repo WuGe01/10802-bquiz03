@@ -35,6 +35,11 @@ table td:nth-child(1){
 table td select{
     width:98%;
 }
+
+/**增加一個result class來控制訂單結果的顯示 */
+table.result td{
+    text-align:left;
+}
 </style>
 <h3>線上訂票</h3>
 <form action="" method="post">
@@ -53,14 +58,16 @@ table td select{
         </tr>
         <tr>
             <td colspan="2" class="ct">
-                <input type="button" value="確定">
+                <!--在確定按鈕加上id或綁定onclick事件-->
+                <input type="button" id="send" value="確定">
                 <input type="reset" value="重置">
             </td>
             
         </tr>
     </table>
 </form>
-
+<!--增加一個div用來處理載入的頁面內容-->
+<div class="load"></div>
 <script>
 
 //註冊電影選單選項改變時的事件
@@ -76,6 +83,16 @@ $("#date").on("change",function(){
   
   //將電影id及日期傳給getSession()以取得場次選項
   getSession(getForm().id,getForm().date)
+
+})
+
+//註冊確定按鈕點擊時的事件
+$("#send").on("click",function(){
+
+    //取得三個選單目前選中的值
+    let formData=getForm()
+    $("form").hide()
+    $(".load").load("./front/booking.php",formData)
 
 })
 
